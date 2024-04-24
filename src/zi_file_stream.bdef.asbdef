@@ -1,0 +1,27 @@
+managed implementation in class zbp_i_file_stream unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_FILE_STREAM //alias <alias_name>
+persistent table ZFILE_STREAM
+draft table ZFILE_STREAM_DFT
+lock master
+total etag local_last_changed_at
+authorization master ( instance )
+etag master last_changed_at
+{
+  // administrative fields: read only
+  field ( readonly ) last_changed_at, local_last_changed_at;
+  field ( readonly : update ) Invoice;
+  field ( numbering : managed )Uuid;
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate ;
+  draft action Discard;
+  draft action Resume;
+
+  draft determine action Prepare;
+}

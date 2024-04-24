@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition'
+define service ZFILE_STREAM_SD {
+  expose ZC_FILE_STREAM as Attachments;
+}
